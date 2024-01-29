@@ -6,11 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "abbasudo/laravel-purity": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^8.75",
+        "laravel/nova": "^4.0",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "mailchimp/marketing": "*",
+        "spatie/laravel-newsletter": "*",
+        "spatie/laravel-query-builder": "^4.0",
+        "symfony/http-client": "*",
+        "symfony/mailgun-mailer": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -52,6 +60,12 @@
             "dont-discover": []
         }
     },
+    "repositories": [
+        {
+        "type": "composer",
+        "url": "https://nova.laravel.com"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -59,4 +73,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
+
 }

@@ -1,17 +1,17 @@
-<div class="form-group">
-    <label for="status">Status</label>
-    <select name="status" id="status" class="form-control">
-        @foreach ($statuses as $status)
-            <option value="{{ $status->id }}">{{ $status->name }}</option>
-        @endforeach
-    </select>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  @vite('resources/js/app.js')
 
-<div class="form-group">
-    <label for="authors[]">Authors</label>
-    <select name="authors[]" id="authors" class="form-control" multiple>
-        @foreach ($authors as $author)
-            <option value="{{ $author->id }}">{{ $author->name }}</option>
-        @endforeach
-    </select>
-</div>
+   <h1>welcome</h1>
+   <h1></h1>
+    
+</body>
+</html>
+

@@ -16,9 +16,13 @@ use App\Http\Controllers\AuthorController;
 |
 */
 
-Route::get('/', function () {
+
+
+
+
+Route::get('/home', function () {
     
     return view('welcome');
-});
+})->name('home');
 Route::resource('books', BookController::class);
 Route::resource('authors', AuthorController::class);

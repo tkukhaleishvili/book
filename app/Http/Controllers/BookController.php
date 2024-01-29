@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Status;
+use Spatie\QueryBuilder\QueryBuilder;
+
 class BookController extends Controller
 {
     /**
@@ -15,20 +17,13 @@ class BookController extends Controller
      */
     public function index()
     {
-        $keyword = request()->search;
-        $books = Book::query()
-            ->with(['authors','status'])
-            ->when(request()->search, function($query) use ($keyword){
-                $query->where('name', 'like', '%'.$keyword.'%')
-                ->orWhereHas('authors', function ($query) use($keyword) {
-                    $query->where('name', 'like', '%'.$keyword.'%');
-                });
-            })
-            
+         $books = QueryBuilder::for(Book::class)
+            ->allowedFilters(['name', 'description'])
+            ->orderBy('id', 'desc')
             ->paginate(10);
-
-        // dd($books);
-        return view('books.index', compact('books'));
+    
+         //dd($books);
+    return view('books.index', compact('books'));
     }
 
     /**
@@ -38,10 +33,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        // add status query for the select
         $statuses = Status::all();
-
-        // add autors query for the multi sleect. name = authors[]
         $authors = Author::all();
        return view('books.create', compact('statuses', 'authors'));
     }
@@ -55,7 +47,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
         $validated= $request->validate([
             'name' => 'required',
             'authors' => 'required',

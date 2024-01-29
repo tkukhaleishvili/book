@@ -10,18 +10,15 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Create books list</h2>
+                    <h2>Create books lists</h2>
                 </div>
 
                 <div class="pull-right mb-2">
                     <a class="btn btn-success" href="{{ route('books.create') }}"> Create books</a>
                     <a class="btn btn-danger" href="{{url('/authors') }}">Authors List</a>
                 </div>
-                <form action="{{ route('books.index') }}" method="GET" class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" name="search" value="{{request()->search}}" placeholder="Search books or authors" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <br>
+
+                <x-tableFilter :fields="'name,description'"/>
 
             </div>
         </div>
@@ -55,8 +52,8 @@
                     <td>{{ $book->status->name }}</td>
                     <td>{{ $book->released_year }}</td>
                     <td>
-                        <form action="{{ route('books.destroy', $book->id) }}" method="POST">
                             <a class="btn btn-primary" href="{{ route('books.edit', $book->id) }}">Edit</a>
+                        <form action="{{ route('books.destroy', $book->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
